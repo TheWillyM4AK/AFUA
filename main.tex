@@ -1,0 +1,135 @@
+\documentclass[12pt,a4paper,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage[acronym,nonumberlist,toc]{glossaries}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=2.5cm,top=1cm,right=2.5cm,bottom=2cm,
+  headheight=2.5cm,headsep=1cm,foot=1cm,footskip=1cm,
+  includeheadfoot
+}
+\usepackage{pdfpages}
+\usepackage{fancyhdr} %Encabezado y pie de página
+\usepackage{lastpage} 
+\usepackage[acronym,nonumberlist,toc]{glossaries}
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=ynt
+]{biblatex}
+
+\addbibresource{bibliografia.bib}
+
+
+\makeglossaries
+\newacronym{afua}{AFUA}{Advanced Flexible Use of Airspace}
+\newacronym{cdm}{CDM}{Colaborative Decisión Making}
+\newacronym{swim}{SWIM}{System Wide Information Management}
+\newacronym{ocd}{OCD}{Operational Concept Document}
+\newacronym{atm}{ATM}{Air Traffic Management}
+\newacronym{asm}{ASM}{Air Space Management}
+\newacronym{atfcm}{ATFCM}{Air  Traffic  Flow  and  Capacity  Management}
+\newacronym{ats}{ATS}{Air Traffic Services}
+\newacronym{dac}{DAC}{Dynamic Airspace Configuration}
+\newacronym{dcb}{DCB}{Demand Capacity Balancing}
+\newacronym{sesar}{SESAR}{Single European Sky ATM Research}
+\newacronym{ceac}{CEAC}{ Conferencia Europea de Aviación Civil}
+\newacronym{fua}{FUA}{Flexible Use of Airspace}
+\newacronym{oat}{Operational Air Traffic}{OAT}
+\newacronym{gat}{General Air Traffic}{GAT}
+\newacronym{fir}{FIR}{Flight Information Region, Región de Información de Vuelo}
+\newacronym{vpa}{VPA}{Variable Profile Area}
+\newacronym{dma}{DMA}{Dynamic Mobile Area}
+\newacronym{fra}{FRA}{Free Route Airspace}
+\newacronym{fab}{FAB}{Functional Airspace Block}
+\glsaddall
+
+\setlength{\parskip}{\baselineskip}		
+\renewcommand\theadfont{\bfseries}
+
+\setcounter{secnumdepth}{3}				%Se numera hasta las subsecciones
+\setcounter{tocdepth}{3}       			%Índice tiene en cuenta hasta las subsubsecciones
+\newcommand{\sectionbreak}{\clearpage}	%Section en página nueva
+
+%Bloque de fancy para frontmatter distinto al mainmatter
+\pagestyle{fancy}						%Defino mi estilo con el paquete fancy
+\fancyhf{}								%Borro todo lo que viene por defecto, lo dejo limpio
+%Encabezado con los logos
+\fancyhead[R]{\includegraphics[height=2cm]{logos/Logo_SATAA.png}}
+\fancyhead[L]{\includegraphics[height=2cm]{logos/Logo_UPM.png}}
+%Pie de página
+\fancyfoot[L]{Advanced Flexible Use of Airspace}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{1pt}      % Grosor linea encabezado
+\renewcommand{\footrulewidth}{1pt}      % Grosor linea pie
+
+\fancypagestyle{plain}{					%Para cambiar las páginas de capítulo
+	\fancyhf{}							%limpio
+	\fancyfoot[L]{Advanced Flexible Use of Airspace}
+    \fancyfoot[R]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}	%Quito la linea de arriba en los capitulos	
+}
+
+\begin{document}
+\begin{titlepage}
+\centering
+{\includegraphics[width=0.5\textwidth]{logos/UPM}\par}
+\vspace{0.1cm}
+{\bfseries\LARGE Universidad Politécnica de Madrid \par}
+\vspace{0.5cm}
+{\scshape\large ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA AERONÁUTICA Y DEL ESPACIO \par}
+\vspace{0.25cm}
+{\includegraphics[width=0.38\textwidth]{logos/ETSIAE} \par}
+\vspace{1cm}
+{\scshape\Large  Gestión de áreas de otros usos. Advanced FUA Mínima automatización \par}
+\vspace{0.7cm}
+{\itshape\large Evolución de los conceptos ATM \par}
+\vfill
+{\Large Autores: \par}
+{\large Cristea, Ciprian \\ Gutiérrez Teuler, Guillermo \\ Martínez Fernández, Íñigo \\ Maxence, Gallian \par}
+\vfill
+{\Large 20 de Octubre de 2021 \par}
+\end{titlepage}
+
+\frontmatter
+
+{\hypersetup{linkcolor=black}
+	\tableofcontents
+    \listoffigures
+    \listoftables
+}
+
+\printglossary[type=\acronymtype,title=Acrónimos,toctitle=Acrónimos]
+
+\pagestyle{fancy}						%Defino mi estilo con el paquete fancy
+\fancyhf{}								%Borro todo lo que viene por defecto, lo dejo limpio
+%Encabezado con los logos
+\fancyhead[R]{\includegraphics[height=2cm]{logos/Logo_SATAA.png}}
+\fancyhead[L]{\includegraphics[height=2cm]{logos/Logo_UPM.png}}
+%Pie de página
+\fancyfoot[L]{Advanced Flexible Use of Airspace}
+\fancyfoot[R]{\thepage/{\hypersetup{linkcolor=black}\pageref{LastPage}}}
+\renewcommand{\headrulewidth}{1pt}      % Grosor linea encabezado
+\renewcommand{\footrulewidth}{1pt}      % Grosor linea pie
+
+\mainmatter
+
+\include{1_Introduccion}
+\include{2_Sistema_existente}
+\include{3_0_Sistema_propuesto}
+\include{3_1_Mision}
+\include{3_2_Politica}
+
+\backmatter
+
+\nocite{*}	%Para que cite todo del .bib aunque no esté citado en el documento, HAY QUE PONERLO AL FINAL PORQUE METE TODAS LAS ENTRADAS DEL .BIB DE GOLPE Y ROMPE EL ORDEN. LAS FUENTES DEJAN DE ESTAR ORDENADAS POR ORDEN DE APARICIÓN, DEBE IR LO ÚLTIMO.
+
+\printbibliography[heading=bibintoc,title={Bibliografía}]
+
+\end{document}
