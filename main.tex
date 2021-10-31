@@ -23,9 +23,10 @@ backend=biber,
 style=numeric,
 sorting=nyt
 ]{biblatex}
+\usepackage{csquotes}                   %Para que no salte el warning, biblatex + babel
+\usepackage{bold-extra}                 %Para que no salte warning de fuentes
 
 \addbibresource{bibliografia.bib}
-
 
 \makeglossaries
 \newacronym{afua}{AFUA}{Advanced Flexible Use of Airspace}
@@ -49,11 +50,14 @@ sorting=nyt
 \newacronym{fra}{FRA}{Free Route Airspace}
 \newacronym{fab}{FAB}{Functional Airspace Block}
 \newacronym{oaci}{OACI}{Organización de la Aviación Civil Internacional}
-\newacronym{eurocontrol}{EUROCONTROL}{Organización Europea de Seguridad Aérea}
+\newacronym{eurocontrol}{Eurocontrol}{Organización Europea de Seguridad Aérea}
+\newacronym{aiaa}{AIAA}{American Institute of Aeronautics and Astronautics}
+\newacronym{ernip}{ERNIP}{European  Route  Network  Improvement  Plan}
 \glsaddall
 
 \setlength{\parskip}{\baselineskip}		
 \renewcommand\theadfont{\bfseries}
+\emergencystretch=1em                   %Quita los warning hbox
 
 \setcounter{secnumdepth}{3}				%Se numera hasta las subsecciones
 \setcounter{tocdepth}{3}       			%Índice tiene en cuenta hasta las subsubsecciones
@@ -101,10 +105,13 @@ sorting=nyt
 
 \frontmatter
 
-{\hypersetup{linkcolor=black}
+%Índice para que salga el resto de índices
+{\hypersetup{linkcolor=black}		%Cambio el color de los link a negro para que no me salga todo en rojo
 	\tableofcontents
-    \listoffigures
-    \listoftables
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\listfigurename}\listoffigures
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\listtablename}\listoftables
 }
 
 \printglossary[type=\acronymtype,title=Acrónimos,toctitle=Acrónimos]
