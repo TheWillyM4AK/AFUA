@@ -1,2 +1,0 @@
-# AFUA
-Trabajo de ATM
